@@ -1,6 +1,6 @@
 {
   "name": "router-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -11,5 +11,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "commander": "^8.2.0",
+    "download-git-repo": "^3.0.2",
+    "figlet": "^1.5.2",
+    "ora": "^5.0.0"
+  }
 }
