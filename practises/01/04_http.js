@@ -1,10 +1,11 @@
 const http = require('http');
 const fs = require('fs');
+const { stringify } = require('querystring');
 
 http.createServer((request, response) => {
   // console.log('a request')
   // response.end('Hi Node') // how to understand
-  const { url, method } = request;
+  const { url, method, headers } = request;
   if (url === '/' && method === 'GET') {
     fs.readFile('./index.html', (err, data) => {
       if (err) {
@@ -19,7 +20,15 @@ http.createServer((request, response) => {
       response.setHeader('Content-Type', 'text/html')
       response.end(data)
     })
-  } else {
+  } else if (url === '/users' && method === 'GET') {
+    response.writeHead(200, { "Content-Type": "application/javascript" })
+    response.end(JSON.stringify({name: "TOM"}))
+  } else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
+    // returns all images
+    // readFile? 需要把全部图片加载到内存，因此在并发数过大的情况会出现问题
+    // 结局问题：stream
+  }
+  else {
     response.statusCode = 400
     response.setHeader('Content-Type', 'text/plain;charset=utf-8')
     response.end('404 没这玩意')
