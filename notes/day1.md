@@ -93,3 +93,76 @@ ora版本更新出现问题
 
 spawn在windows上有些兼容问题，主要是因为命令行的原因
 
+## 课后作业设计1
+
+用双向链接编译构建文件图
+
+### 说明
+
+在markdown中一个比较新颖的语法是双向链接[[]]，意思是当某个文档中需要引用其他文档的时候，可以通过这个符号来定义一个指向其他文档的链接。而通过双向链接实现的文档库经过解析，可以形成一张图来可视化文件之间的复杂引用关系。
+
+我们试图构建一个命令行工具，在某个markdown文件库中使用，可以自动下载模板，用fs获得文件和文件关系资料，生成关系图数据，然后把模板和数据一起编译，并自动发布到浏览器上运行。
+
+## 持久化技术
+
+就是将内存中的数据模型转化为存储中的模型
+mysql
+
+通过模型自动映射的RESTful服务
+
+连接池：https://juejin.cn/post/6844904069962661896
+用SQL翻页，模糊查询，排序
+
+### ORM: Object Relation Mapping
+把对象和数据库联系到一起，操纵对象的时候直接在后台操纵数据库。
+
+sequelize
+
+### ODM:
+
+Mongoose
+
+User的增删查改的API是否可以基于约定的方式自动产生，形成后端的管理界面。
+
+也就是，
+input:  
+name + {schema}，写成json形式
+name: {
+  property1: ['string', 'required'],
+  property2: ['string'],
+}
+返回的是方法。
+
+想要数据持久化的话，可以创建一个表存储上面这样的数据，服务端收到接口之后首先查询该表，是否有定义相关的表接口数据，然后根据对应的接口进行查询和返回。
+
+python django框架
+java jeecg
+js sailsjs, keystonejs
+
+- 代码生成器
+- 动态编程
+
+## 加密鉴权
+- cookie & session
+
+- jwt token
+base64 encoding 
+json数据+json载荷（签发时间+过去时间）
+OAth本质就是
+md5 sha512
+
+## CDN
+内容分发网络
+同一种内容多处存储
+CDN回源和运作
+本地缓存数据，通过key-value进行映射
+本质上相当于是网络的缓存
+
+## RPC 远程调用
+Remote Procedure Call
+基于HTTP协议的RPC，或者基于底层二进制协议的RPC
+
+
+
+
+
