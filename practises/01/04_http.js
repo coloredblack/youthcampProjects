@@ -26,7 +26,11 @@ http.createServer((request, response) => {
   } else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
     // returns all images
     // readFile? 需要把全部图片加载到内存，因此在并发数过大的情况会出现问题
-    // 结局问题：stream
+    // stream url: 1.png
+    // path 
+    console.log(url);
+    fs.createReadStream('./' + url).pipe(response);
+
   }
   else {
     response.statusCode = 400
