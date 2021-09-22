@@ -33,6 +33,12 @@
 
 跟着写页面（感觉都是在弄CSS）
 
+## 组件模板
+
+vue那块不懂
+react这里倒是很容易，就是通过props传入一个函数（个人感觉纯函数会不会更好……），可以接受data返回jsx形式的组件函数，并且传入一个数组data，然后通过data.map绑定该函数，返回一组函数generator，然后用这个generator就可以渲染出列表。
+
+
 ## 组件体系分析
 - ant.disign
 vuetifyjs.com
