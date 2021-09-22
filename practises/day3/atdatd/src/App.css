@@ -1,0 +1,57 @@
+h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+#logo img {
+  height: 32px;
+  margin-right: 12px;
+}
+
+#logo {
+  padding-right: 16px;
+  padding-left: 40px;
+  height: 64px;
+  overflow: hidden;
+  color: #000000d9;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: PuHuiTi,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji,sans-serif;
+  line-height: 64px;
+  letter-spacing: -.18px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+#searchbox {
+  height: 64px;
+  line-height: 64px;
+  vertical-align: middle;
+}
+
+#menu {
+  vertical-align: middle;
+  align-items: center;
+  margin: 0;
+}
+
+.ant-row {
+  display: flex-flow;
+  flex-flow: nowrap;
+  height:64px;
+  row-gap:0px;
+  vertical-align: middle;
+}
+
+.ant-col {
+  position: relative;
+  max-width: 100%;
+  min-height: 1px;
+  display: flex-flow;
+}
