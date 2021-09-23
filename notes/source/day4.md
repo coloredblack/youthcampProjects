@@ -50,9 +50,53 @@ vw屏幕的1%
 媒体查询：根据媒体特性单独设置样式
 
 ### 移动端事件
+touchStart
+touchMove
+touchEnd
 
+阻止touchStart默认事件：
+- 滚动条
+- 页面缩放
+- 超链接
+- 鼠标事件
+- 表单相关控件获得焦点
+- 长按菜单
+
+组织touchmove
+- 滚动条
+- 页面缩放
+
+touchend
+不常用
+
+### 移动端应用形式
+- 滑动
+- 少量点击
+- 按压（长按）
+
+mousedown: 鼠标在元素上摁下
+mousemove: 鼠标在元素上移动
+mouseup: 鼠标在元素上抬起
+touchstart: 手指在元素上摁下
+touchmove: 在元素上摁下后在屏幕中移动
+touchend: 摁下后在屏幕上抬起
+
+### 封装手势库
+
+touch start move end
+tap 
+pressstart pressend 
+
+长按：用户按超过三百毫秒就执行。
+
+方向判断
+
+无缝轮播：沿着一个方向一直拖拽
 
 ## 移动端项目
 
 天猫新品视图实战
+
+实现吸顶效果的细节
+
 

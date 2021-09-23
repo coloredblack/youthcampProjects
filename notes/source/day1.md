@@ -30,14 +30,13 @@ fs.readFile(target: string, callback: function(err,data))
 fs.readFileSync(target: string, callback: function(err,data))
 
 ## Buffer
-实现了对于C中处理Buffer相关方法的封装，具体见paractise/05_http.js
+实现了对于C中处理Buffer相关方法的封装，具体见practise/day1/01/05.js
 
 ## HTTP 
 practise/04_http.js
 
 小练习：做一个构建一个HTTP服务，把之前的API用上 
-Hint：有点想要做一个工具，把自己的笔记和代码整合起来形成一个类似notebook或者codesandbox的简陋沙盒环境，进阶的可能是分块完成注释和代码，并且支持把某一部分代码直接打包成一个模块隐藏起来，自动建立相关联系
-练习地址: pacakges/myNotebook
+Hint：有点想要做一个工具，把自己的笔记和代码整合起来形成一个类似notebook或者codesandbox的简陋沙盒环境，进阶的可能是分块完成注释和代码
 
 ## STREAM
 使用fs.createReadStream和fs.createWriteStream建立输入流和输出流，并且使用readStream.pipe(writeStream)将其用管道链接，防止过多数据占用内存。

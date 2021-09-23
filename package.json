@@ -5,11 +5,6 @@
     "lerna": "^4.0.0"
   },
   "workspaces": [
-    "packages",
-    "practises/day2"
-  ],
-  "dependencies": {
-    "webpack": "^5.53.0",
-    "webpack-cli": "^4.8.0"
-  }
+    "packages/*"
+  ]
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doc</title>
+  <style>
+    #box {
+      width: 70vw;
+      height: 70vw;
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <input type="text"/>
+  <a href="https://www.baidu.com">百度</a>
+  <div id="box"></div>
+  <ul>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+    <li>占位</li>
+  </ul>
+  <script>
+    let box = document.querySelector("#box");
+
+    box.addEventListener("touchstart", (e)=> {
+      e.preventDefault();
+      console.log("start");
+    }, {
+      passive: false
+    });
+    box.addEventListener("touchmove", (e) => {
+      box.innerHTML = `
+      触发当前事件手指个数：${e.changedTouches.length},<br/>
+      当前元素上手指个数：${e.targetTouches.length}<br/>
+      当前屏幕上手指个数：${e.touches.length} <br/>
+      `;
+      console.log(e, "move");
+    });
+    box.addEventListener("touchend", (e) => {
+      e.preventDefault()
+    }, {passive: false})
+  </script>
+</body>
+</html>

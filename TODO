@@ -1,0 +1,9 @@
+- [ ] 第一天自定作业：看vscode event, stream, storage相关的源码进行更深的理解，并仿写一个tlt-file-server进行后台的文件管理。
+- [ ] 完善Day 1 的笔记
+- [ ] 第二天自定作业：使用rollup写一个基于堆和B+树的网文分页算法tlt-pager，并在一个用webpack打包的阅读器前端tlt-reader上使用
+- [ ] 完善Day 2 的笔记
+- [ ] 第三天自定作业：参考antd源码，自己设计并实现一个tlt-reader组件包tlt-reader-components
+- [ ] 完善Day 3 的笔记
+- [ ] 第四天作业：在packages/page-demo中完成网页，实现移动端适配，轮播图和吸顶效果，体验实际的页面实现过程
+- [ ] 完善Day 4 的笔记
+
