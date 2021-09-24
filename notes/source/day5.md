@@ -26,6 +26,19 @@ querySelector
 createElement
 （驱动Canvas，原生，小程序）
 
+## mini-vue 
+- 入口很难找
+- 奇怪的issue解决
 
+明白核心原理，写一个mini版本的实现。
 
+- find root element
+- reander the page
+  - compile template
+  - render the template (using default renderer or costumed renderer)
+  - append to root element
+ 
+最开始的时候，我们不考虑复杂的泛化需求，只负责把{{title}}渲染为h3,所以我们只用最简单，最不优雅的方式最快捷地完成需求：
+practises/day5/vue-taste/02-init.html
 
+![](./images/res5_1.png)

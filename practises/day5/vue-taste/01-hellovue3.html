@@ -15,13 +15,9 @@
   <script>
     const app = Vue.createApp({
       data() {
-        const state = Vue.reactive({
+        return {
           title: 'hello, vue3'
-        });
-        setTimeout(()=>{
-          state.title = 'new title'
-        }, 1000)
-        return state;
+        };
       },
     });
     app.mount('#app');
