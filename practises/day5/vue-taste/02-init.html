@@ -13,17 +13,36 @@
   <!--script src="http://unpkg.com/vue@next"></script-->
   <script>
     const Vue = {
+      createRenderer({querySelector, insert}) {
+        // return a renderer 
+        const renderer = {
+          querySelector: querySelector,
+          insert: insert
+        };
+        return renderer;
+      },
       createApp(options) {
+        // create a rendere for web platform
+        // using in run-time core
+        const renderer = Vue.createRenderer({
+          querySelector(sel) {
+            return document.querySelector(sel)
+          },
+          insert(el, parent){
+            parent.appendChild(el);
+          }
+        })
         return {
           mount(selector) {
             // console.log("mount");
-            const parent = document.querySelector(selector);
+            const parent = renderer.querySelector(selector);
             if (!options.render) {
               options.render = this.compile(parent.innerHTML);
             }
             const el = options.render.call(options.data())
             parent.innerHTML = '';
-            parent.appendChild(el);
+            // parent.appendChild(el);
+            renderer.insert(el, parent);
           }, 
           compile(template) {
             // return a render function 

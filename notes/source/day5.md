@@ -42,3 +42,15 @@ createElement
 practises/day5/vue-taste/02-init.html
 
 ![](./images/res5_1.png)
+
+兼容性的问题：使用proxy代理
+
+setup就是created hooks
+
+扩展性问题：
+custom renderer
+
+the code is strongly coupling with web browser
+
+use higher function factory
+
