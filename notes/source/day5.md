@@ -54,3 +54,28 @@ the code is strongly coupling with web browser
 
 use higher function factory
 
+vue2 需要递归
+数组需要单独的实现
+解决动态新增，删除的问题
+
+Proxy 
+Reflect
+
+副作用函数可能嵌套，所以用一个EffectStack去模拟递归
+
+# 虚拟DOM
+
+尽可能减少DOM操作
+
+可能改变不同的key
+
+render函数缠身虚拟DOM
+
+## diff 
+
+通过比较已存在的vnode，最大限度地复用真实存在的节点，从而最小化DOM的操作
+
+性能？
+
+在web平台默认不会进行层级的移动，同层比较，深度优先。
+

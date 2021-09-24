@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{title}}
+  </div>
+  <!--script src="http://unpkg.com/vue@next"></script-->
+  <script>
+    // simplest h 
+    function h(tag, props, children) {
+      return {tag, props, children}
+    }
+  </script>
+  <script>
+    const Vue = {
+      createRenderer({querySelector, insert, createElement}) {
+        return {
+          createApp(options){
+            function createElm({tag, props, children}) {
+                // const createElm = this.createElm;
+                console.log("is creating element", children);
+                // recursively generate el
+                // console.log(tag, children);
+                const el = createElement(tag); 
+                // el.setAttribute
+                // recursively generate children
+                // if children is a string
+
+                if (typeof children === 'string'){
+                  el.textContent = children;
+                } else {
+                  children.forEach(
+                    child => {
+                      console.log(child);
+                      const childel = createElm(child);
+                      insert(childel, el)
+                    }
+                  )
+                }
+                return el;
+              }
+            
+            function patch(n1, n2){
+              const el = n2.el = n1.el;
+              // n1 is the older node
+              if (n1.tag === n2.tag && n1.key === n2.key) {
+                const oldCh = n1.children;
+                const newCh = n2.children;
+              
+                if (typeof oldCh === 'string') {
+                  if (typeof newCh === 'string') {
+                    if (oldCh !== newCh ) {
+                      el.textContent = newCh;
+                    }
+                  } else {
+                    // replace string to children
+                    el.textContent = '';
+                    newCh.forEach(child => insert(createElm(child), el));
+                  }
+                } else {
+                  if (typeof newCh === 'string') {
+                    el.texeContent = newCh;
+                  } else {
+
+                  }
+                } 
+              }
+            }
+            return {  
+              createElm: createElm,
+              mount(selector){
+                const parent = querySelector(selector);
+                
+                if (!options.render) {
+                  options.render = this.compile(parent.innerHTML);
+                }
+
+                if (options.setup) {
+                  this.setupState = options.setup()
+                }
+                if (options.data) {
+                  this.data = options.data();
+                }
+                // fit vue2.8
+                const proxy = new Proxy(this, {
+                  get (target, key) {
+                    if (target.setupState && key in target.setupState) {
+                      return target.setupState[key];
+                    } else {
+                      return target.data[key];
+                    }
+                  },
+                  set (target, key, val) {
+                    if (target.setupState && key in target.setupState) {
+                      target.setupState[key] = val;
+                    } else {
+                      target.data[key] = val;
+                    }
+                  }
+                })
+                this.update = function () {
+                  // const el = options.render.call(proxy);
+                  // parent.innerHTML = "";
+                  //insert(el, parent);
+                  const vnode = options.render.call(proxy);
+                  if (!this.isMounted) {
+                    // craeteElement to build total
+                    console.log(vnode);
+                    // console.log(this.createElm);
+                    const el = createElm(vnode);
+                    // console.log(el);
+                    parent.innerHTML = "";
+                    insert(el, parent);
+                    vnode.el = el;
+                    // init
+                    this.isMounted = true;
+                  }else {
+                    console.log("is updating")
+                    // update
+                    patch(this._vnode, vnode);
+                  }
+
+                  this._vnode = vnode;
+                }
+                effect(this.update);
+              },  
+              compile(template) {
+                // console.log(this.title);
+                return function render() {
+                  // const h3 = document.createElement('h3');
+                  // h3.textContent = this.title;
+                  // return h3;
+                  // return h('h3', null, this.title);
+                  if (Array.isArray(this.title)) {
+                    return h('h3', null, this.title.map(s=>h('p', null, s)));
+                  } else {
+                    return h('h3', null, this.title);
+                  }
+                }
+              },
+              
+            }
+          }
+        }
+      },
+      createApp(options) {
+        const renderer = Vue.createRenderer({
+          querySelector(sel) {
+            return document.querySelector(sel);
+          },
+          insert(el, parent) {
+            parent.appendChild(el);
+          },
+          createElement(tag) {
+            return document.createElement(tag);
+          }
+        })
+        return renderer.createApp(options);
+      }
+    }
+  </script>
+  <script>
+    function reactive(obj) {
+      return new Proxy(obj, {
+        get(target, key) {
+          console.log('get key', key);
+          // store
+          track(target, key);
+          return target[key];
+        },
+        set(target, key, val) {
+          console.log('set key', key);
+          target[key] = val;
+          // app.update()
+          // publish trigger
+          trigger(target, key);
+        }
+      })
+    }
+  </script>
+  <script>
+    function effect(fn) {
+      const eff = function() {
+        try {
+          effectStack.push(eff);
+          fn();
+        } finally {
+          effectStack.pop()
+        }
+      }
+      eff();
+      return eff;
+    }
+    const effectStack = [];
+    // {target: {key: [update1, update2]}}
+    const targetMap = {};
+
+    function track(target, key) {
+      // console.log("is tracking", target);
+      const effect = effectStack[effectStack.length-1];
+      // assert object using target as key exists 
+      let map = targetMap[target];
+      if (!map) {
+        // first get target 
+        map = targetMap[target] = {}; //initalize
+      }
+      let deps = map[key];
+      if (!deps) {
+        deps = map[key] = [];
+      }
+      if (deps.indexOf(effect) === -1){
+        // console.log(key, effect);
+        deps.push(effect);
+      }
+    }
+  
+    function trigger(target, key ) {
+      // console.log("is triggering ", target);
+      const map = targetMap[target];
+      if (map) {
+        const deps = map[key];
+        //  console.log(deps);
+        if (deps) {
+          deps.forEach(dep => dep());
+        }
+      }
+    }
+    /*
+    const obj = reactive({foo: "foo"});
+    effect(() => {
+      console.log(obj.foo);
+    });
+
+    obj.foo = 'foo~~~~~'
+    */
+  </script>
+  <script>
+    const app = Vue.createApp({
+      setup() {
+        const state = reactive({
+          title: 'vue3 hello!'
+        });
+        
+        setTimeout(()=>{
+          state.title = 'hello'.split('')
+        }, 2000);
+        
+        return state;
+      },
+    });
+    app.mount('#app');
+  </script>
+</body>
+</html>
