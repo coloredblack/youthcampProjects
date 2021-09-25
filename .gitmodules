@@ -13,3 +13,9 @@
 [submodule "tlt-cli"]
   path = "packages/tlt-cli"
   url = "https://github.com/coloredblack/tit-cli.git"
+[submodule "packages/tlt-pager"]
+	path = packages/tlt-pager
+	url = https://github.com/coloredblack/tlt-pager
+[submodule "packages/tlt-reader-components"]
+	path = packages/tlt-reader-components
+	url = https://github.com/coloredblack/tlt-reader-components.git
