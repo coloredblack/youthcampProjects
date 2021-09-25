@@ -1,8 +1,6 @@
 # tlt-reader-components
 
-> the components built for tlt-reader project
-
-[![NPM](https://img.shields.io/npm/v/tlt-reader-components.svg)](https://www.npmjs.com/package/tlt-reader-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+this is the components built in react for tlt-reader projects
 
 ## Install
 
