@@ -1,0 +1,15 @@
+[submodule "final"]
+  path = "packages/final"
+  url = "https://github.com/bytes-sixth/bytes-sixth.git"
+
+[submodule "tlt-cli"]
+  path = "packages/tlt-cli"
+  url = "https://github.com/coloredblack/tit-cli.git"
+
+[submodule "tit-pager"]
+  path = "packages/tlt-pager"
+  url = ""https://github.com/coloredblack/tit-pager.git"
+
+[submodule "tlt-reader-components"]
+  path = "packages/tlt-reader-components"
+  url = "https://github.com/coloredblack/tlt-reader-components.git"
