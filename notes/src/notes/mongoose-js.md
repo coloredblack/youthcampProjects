@@ -1,3 +1,4 @@
+```js
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/test');
@@ -23,7 +24,17 @@ conn.on("open", async () => {
     
     r = await Model.find({ name: "苹果" });
     console.log("Search Result: ", r)
+
+    // 6.更新，updateOne返回Query
+    r = await Model.updateOne({ name: "苹果" }, { $set: { name: '芒果' } });
+    console.log("更新结果：", r);
+
+    // 7.删除，deleteOne返回Query
+    r = await Model.deleteOne({ name: "苹果" });
+    console.log("删除结果：", r);
   } catch (err) {
     console.log(err);
   }
 });
+
+```

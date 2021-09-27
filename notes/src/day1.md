@@ -1,59 +1,31 @@
 # Day 1
 
-<NodeJS And Server>
+NodeJS And Server
 
 By 全栈然叔
 
-## NodeJS API
+## NodeJS Basic API
+[[./notes/node-basic-api]]
 
-http://nodejs.cn/api/
+## CLI 工具
 
-- Core API (no require): buffer, module, process
-- inside API (no install): os, fs, path, http, event
-
-### Buffer
-
-- practises/01/03_buffer.js
-- Buffer.alloc(LenOfBuf)
-- Buffer.from(expr)
-- Buffer.concat([buf1, buf2])
-- Buffer.toString(buf)
-
-### fs: File System
-
-Can read file sync or async 
-
-- look practise/day1/01/01_fs.js and 02_fs_promise.js
-- fs.readFileSync
-- fs.readFile
-
-we can use promisify to change the callback async style to promise style:
-
-### Http 
-build a http connection
-
-- look practise/day1/01/04_http.js
-
-
-### Stream
-
-Stream是Event.Emitter接口
-
-fs.createReadStream()
-fs.createWriteStream()
-stream1.pipe(stream2)
+[[./notes/cli-basic]]
 
 ## 持久化技术
+- mongoose: [[./notes/mongoose-js.md]]
+- mysql: 
+
+## 事件-触发策略
+[[./notes/eventEmitter]]
 
 ## RestFul API
+[[./notes/restFUL]]
 
 ## Auth
+[[./auth]]
 
-### Cookie and Session
-
-### JWT Token
-
-### CDN
+### 前端需要知道的后端知识点
+[[./notes/backForFront]]
 
 `CDN` 全称 `Content Delivery Network`，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。
 

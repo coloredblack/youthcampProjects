@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
  */
 function load(dir, cb) {
   const url = path.resolve(__dirname, dir);
-  const files = fs.readFileSync(url);
+  const files = fs.readdirSync(url);
   files.forEach(filename => {
     filename = filename.replace('.js', '');
     const file = require(url + '/' + filename);
@@ -26,7 +26,7 @@ const loadModel = config => app => {
   app.$model = {}
   load('../model', (filename, { schema }) => {
     console.log('load model: ' + filename, schema);
-    app.$model[filename] = mongoose.model(filename, shema);
+    app.$model[filename] = mongoose.model(filename, schema);
   })
 }
 
